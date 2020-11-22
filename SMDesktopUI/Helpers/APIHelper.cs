@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Configuration;
+using SMDesktopUI.Models;
 
 namespace SMDesktopUI.Helpers
 {
-    public class APIHelper
+    public class APIHelper : IAPIHelper
     {
         //handle all API call interactions
-        public HttpClient ApiClient { get; set; }
+        public HttpClient apiClient;
 
         public APIHelper()
         {
@@ -23,16 +24,16 @@ namespace SMDesktopUI.Helpers
         {
             string api = ConfigurationManager.AppSettings["api"];
 
-            ApiClient = new HttpClient();
-            ApiClient.BaseAddress = new Uri(api);
-            ApiClient.DefaultRequestHeaders.Accept.Clear();
+            apiClient = new HttpClient();
+            apiClient.BaseAddress = new Uri(api);
+            apiClient.DefaultRequestHeaders.Accept.Clear();
 
-            ApiClient.DefaultRequestHeaders
+            apiClient.DefaultRequestHeaders
                 .Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
         }
 
-        public async Task Authenticate(string username, string password)
+        public async Task<AuthenticatedUser> Authenticate(string username, string password)
         {
             var data = new FormUrlEncodedContent(new[]
             {
@@ -41,11 +42,16 @@ namespace SMDesktopUI.Helpers
                 new KeyValuePair<string, string>("password", password)
             });
 
-            using (HttpResponseMessage response = await ApiClient.PostAsync("/Token", data))
+            using (HttpResponseMessage response = await apiClient.PostAsync("/Token", data))
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<string>();
+                    var result = await response.Content.ReadAsAsync<AuthenticatedUser>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
                 }
             }
         }
