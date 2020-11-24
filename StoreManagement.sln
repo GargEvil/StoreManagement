@@ -9,7 +9,7 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SMData", "SMData\SMData.sql
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDesktopUI", "SMDesktopUI\SMDesktopUI.csproj", "{A1B787D0-4FA9-4BE9-AB8C-51D328FED03B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDataManager.Libraty", "SMDataManager.Libraty\SMDataManager.Libraty.csproj", "{E6C390F0-50BB-4728-AFF9-AD97FEB63E1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDataManager.Library", "SMDataManager.Libraty\SMDataManager.Library.csproj", "{E6C390F0-50BB-4728-AFF9-AD97FEB63E1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

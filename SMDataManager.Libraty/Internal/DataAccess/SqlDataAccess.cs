@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMDataManager.Libraty
+namespace SMDataManager.Library.Internal.DataAccess
 {
-    public class SqlDataAccess
+    internal class SqlDataAccess
     {
         public string GetConnectionString(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
-        public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connecntionStringName)
+        public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName)
         {
-            string connectionString = GetConnectionString(connecntionStringName);
+            string connectionString = GetConnectionString(connectionStringName);
 
             using(IDbConnection connection = new SqlConnection(connectionString))
             {
@@ -30,9 +30,9 @@ namespace SMDataManager.Libraty
             }
         }
 
-        public void SaveData<T>(string storedProcedure, T parameters, string connecntionStringName)
+        public void SaveData<T>(string storedProcedure, T parameters, string connectionStringName)
         {
-            string connectionString = GetConnectionString(connecntionStringName);
+            string connectionString = GetConnectionString(connectionStringName);
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
