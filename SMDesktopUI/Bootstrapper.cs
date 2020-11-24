@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using SMDesktopUI.Helpers;
 using SMDesktopUI.Library.Api;
+using SMDesktopUI.Library.Models;
 using SMDesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace SMDesktopUI
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
             GetType().Assembly.GetTypes()

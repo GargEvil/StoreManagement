@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SMDesktopUI.Library.Models
 {
-    public class LoggedInUserModel
+    public class LoggedInUserModel : ILoggedInUserModel
     {
+        public string Token { get; set; }
+
         public string Id { get; set; }
 
         public string FirstName { get; set; }
