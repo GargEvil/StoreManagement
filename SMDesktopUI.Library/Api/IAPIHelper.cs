@@ -1,7 +1,7 @@
 ﻿using SMDesktopUI.Models;
 using System.Threading.Tasks;
 
-namespace SMDesktopUI.Helpers
+namespace SMDesktopUI.Library.Api
 {
     public interface IAPIHelper
     {

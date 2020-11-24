@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Configuration;
 using SMDesktopUI.Models;
 
-namespace SMDesktopUI.Helpers
+namespace SMDesktopUI.Library.Api
 {
     public class APIHelper : IAPIHelper
     {

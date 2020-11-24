@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using SMDesktopUI.Helpers;
+using SMDesktopUI.Library.Api;
 using SMDesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;

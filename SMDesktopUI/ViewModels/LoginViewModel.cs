@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using SMDesktopUI.Helpers;
+using SMDesktopUI.Library.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,6 +96,8 @@ namespace SMDesktopUI.ViewModels
             {
                 ErrorMessage = "";
                 var result = await _apiHelper.Authenticate(UserName, Password);
+
+
             }
             catch (Exception ex)
             {
