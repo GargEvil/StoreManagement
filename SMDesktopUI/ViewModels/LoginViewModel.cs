@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using SMDesktopUI.EventModels;
 using SMDesktopUI.Helpers;
 using SMDesktopUI.Library.Api;
 using System;
@@ -14,10 +15,12 @@ namespace SMDesktopUI.ViewModels
         private string _userName;
         private string _password;
         private IAPIHelper _apiHelper;
+        private IEventAggregator _events;
 
-        public LoginViewModel(IAPIHelper apiHelper)
+        public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events)
         {
             _apiHelper = apiHelper;
+            _events = events;
         }
 
         public string UserName
@@ -98,6 +101,8 @@ namespace SMDesktopUI.ViewModels
                 var result = await _apiHelper.Authenticate(UserName, Password);
 
                 await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+
+                _events.PublishOnUIThread(new LogOnEvent());
             }
             catch (Exception ex)
             {
