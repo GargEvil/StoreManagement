@@ -7,8 +7,8 @@
     <ProjectGuid>{E6C390F0-50BB-4728-AFF9-AD97FEB63E1B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SMDataManager.Libraty</RootNamespace>
-    <AssemblyName>SMDataManager.Libraty</AssemblyName>
+    <RootNamespace>SMDataManager.Library</RootNamespace>
+    <AssemblyName>SMDataManager.Library</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\ProductData.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\DataAccess\SqlDataAccess.cs" />

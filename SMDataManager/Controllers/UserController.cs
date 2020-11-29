@@ -11,7 +11,6 @@ using System.Web.Http;
 namespace SMDataManager.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/User")]
     public class UserController : ApiController
     {
        
