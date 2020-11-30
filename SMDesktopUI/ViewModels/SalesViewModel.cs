@@ -43,6 +43,20 @@ namespace SMDesktopUI.ViewModels
             }
         }
 
+        private ProductModel _selectedProduct;
+
+        public ProductModel SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set 
+            {
+                _selectedProduct = value;
+                NotifyOfPropertyChange(() => SelectedProduct);
+                NotifyOfPropertyChange(() => CanAddToCart);
+            }
+        }
+
+
         private int _itemQuantity;
 
         public int ItemQuantity
@@ -52,6 +66,7 @@ namespace SMDesktopUI.ViewModels
             {
                 _itemQuantity = value;
                 NotifyOfPropertyChange(() => ItemQuantity);
+                NotifyOfPropertyChange(() => CanAddToCart);
             }
         }
 
@@ -105,6 +120,13 @@ namespace SMDesktopUI.ViewModels
                 bool output = false;
                 //Make sure something is selected
                 //Make sure there is an item quantity
+
+                if (ItemQuantity > 0 && SelectedProduct?.QuantityInStock>=ItemQuantity)
+                {
+                    output = true;
+                }
+
+
                 return output;
             }
         }
