@@ -57,7 +57,7 @@ namespace SMDesktopUI.ViewModels
         }
 
 
-        private int _itemQuantity;
+        private int _itemQuantity=1;
 
         public int ItemQuantity
         {
@@ -87,8 +87,13 @@ namespace SMDesktopUI.ViewModels
         {
             get 
             {
+                decimal subTotal = 0;
                 //TODO-Replace with calculation
-                return "0.00$";
+                foreach (var item in Cart)
+                {
+                    subTotal += item.Product.RetailPrice * item.QuantityInCart;
+                }
+                return subTotal.ToString("C");
             }
             
         }
@@ -133,12 +138,30 @@ namespace SMDesktopUI.ViewModels
 
         public void AddToCart()
         {
-            CartItemModel item = new CartItemModel()
+            CartItemModel existingItem = Cart.FirstOrDefault(x => x.Product == SelectedProduct);
+
+            if (existingItem != null)
             {
-                Product = SelectedProduct,
-                QuantityInCart = ItemQuantity
-            };
-            Cart.Add(item);
+                existingItem.QuantityInCart += ItemQuantity;
+                SelectedProduct.QuantityInStock -= ItemQuantity;
+                //Should do better
+                Cart.Remove(existingItem);
+                Cart.Add(existingItem);
+            }
+            else
+            {
+                CartItemModel item = new CartItemModel()
+                {
+                    Product = SelectedProduct,
+                    QuantityInCart = ItemQuantity
+                };
+                Cart.Add(item);
+            }
+           
+            SelectedProduct.QuantityInStock -= ItemQuantity;
+            ItemQuantity = 1;
+            NotifyOfPropertyChange(() => SubTotal);
+            NotifyOfPropertyChange(() => Cart);
         }
 
         public bool CanRemoveFromCart
@@ -149,7 +172,10 @@ namespace SMDesktopUI.ViewModels
                 return output;
             }
         }
-        public void RemoveFromCart() { }
+        public void RemoveFromCart()
+        {
+            NotifyOfPropertyChange(() => SubTotal);
+        }
 
         public bool CanCheckOut
         {
