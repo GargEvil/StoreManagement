@@ -112,7 +112,15 @@ namespace SMDesktopUI.ViewModels
         {
             get
             {
-                //TODO-Replace with calculation
+                //decimal taxAmount = 0;
+
+                //foreach (var item in Cart)
+                //{
+                //    taxAmount += item.Product.RetailPrice * item.QuantityInCart;
+                //}
+
+                //return taxAmount.ToString("C");
+
                 return "0.00$";
             }
 
