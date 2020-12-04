@@ -12,17 +12,17 @@ namespace SMDesktopUI.ViewModels
     {
         private IEventAggregator _events;
         private SalesViewModel _salesVM;
-        private SimpleContainer _container;
+        
 
         public ShellViewModel(IEventAggregator events,
-            SalesViewModel salesVM, SimpleContainer container)
+            SalesViewModel salesVM)
         {
             _events = events;
             _events.Subscribe(this);
             _salesVM = salesVM;
-            _container = container;
            
-            ActivateItem(_container.GetInstance<LoginViewModel>());
+           
+            ActivateItem(IoC.Get<LoginViewModel>());
         }
 
         public void Handle(LogOnEvent message)
